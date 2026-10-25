@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3eaf0" />
+    <meta
+      name="description"
+      content="Thiệp cưới Thanh Xuân & Mọng Tiền — 09:00, ngày 01.12.2026. Trân trọng kính mời bạn chung vui cùng chúng mình."
+    />
+    <title>Thanh Xuân & Mọng Tiền — Thiệp cưới</title>
+    <link rel="icon" href="./assets/heart.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./wedding.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="invitation" id="invitation">
+      <section class="hero" id="home" aria-labelledby="cover-title">
+        <p class="open-hint script">Nhấp để mở!</p>
+        <div class="envelope-scene">
+          <div class="envelope-back"></div>
+          <div class="envelope-flap"></div>
+          <div class="photo-rise photo-rise-back">
+            <figure class="photo-frame photo-back">
+              <img
+                data-photo="heroBack"
+                src="./images/wedding-preview.jpg"
+                width="1600"
+                height="2400"
+                fetchpriority="high"
+                alt="Ảnh cưới Thanh Xuân và Mọng Tiền"
+              />
+            </figure>
+          </div>
+          <div class="photo-rise photo-rise-front">
+            <figure class="photo-frame photo-front">
+              <img
+                data-photo="hero"
+                src="./images/wedding-preview.jpg"
+                width="1600"
+                height="2400"
+                alt="Cô dâu và chú rể trong ngày chung đôi"
+              />
+            </figure>
+          </div>
+          <div class="date-card-rise">
+            <div class="date-card">
+              <p>SAVE OUR DATE</p>
+              <strong data-field="dateShort">01.12.2026</strong>
+              <span class="script">The beginning of forever</span>
+              <span class="card-rule"></span>
+            </div>
+          </div>
+          <div class="envelope-front"></div>
+          <img
+            class="envelope-flowers flowers-left"
+            src="./images/flower.png"
+            width="1024"
+            height="1536"
+            alt=""
+          />
+          <img
+            class="envelope-flowers flowers-right"
+            src="./images/flower.png"
+            width="1024"
+            height="1536"
+            alt=""
+          />
+          <button
+            id="open-invitation"
+            class="wax-seal"
+            aria-label="Mở thiệp cưới"
+            hidden
+          >
+            ♡
+          </button>
+        </div>
+        <div class="hero-names">
+          <p class="script cover-title" id="cover-title">Thiệp cưới</p>
+          <h1>
+            <span data-field="groom">Thanh Xuân</span
+            ><span class="name-and"> & </span
+            ><span data-field="bride">Mọng Tiền</span>
+          </h1>
+          <p class="cover-date" data-field="dateLabel">01 . 12 . 2026</p>
+          <a class="scroll-cue" href="#story" aria-label="Cuộn xuống đọc thiệp"
+            >↓</a
+          >
+        </div>
+      </section>
+      <main id="content" tabindex="-1">
+        <section class="story section-pad" id="story">
+          <div class="story-heading reveal">
+            <span class="small-heart" aria-hidden="true">♡</span>
+            <h2 class="story-date">
+              <span class="script">Ngày</span
+              ><strong data-date="day">01</strong>
+            </h2>
+            <p>
+              “Tình yêu không cần hoàn hảo.<br />Chỉ cần chân thành và cùng nhau
+              đi hết con đường.”
+            </p>
+          </div>
+          <div class="story-photo reveal">
+            <img
+              data-photo="story"
+              src="./images/wedding-preview.jpg"
+              width="1600"
+              height="2400"
+              alt="Cô dâu và chú rể nắm tay nhau trước nhà thờ"
+              loading="lazy"
+            />
+          </div>
+        </section>
+
+        <section class="couple section-pad" id="couple">
+          <div class="section-heading reveal">
+            <p>
+              Trân trọng kính mời bạn dành chút thời gian<br />đến dự lễ thành
+              hôn của
+            </p>
+          </div>
+          <div class="couple-portraits">
+            <article class="portrait reveal">
+              <div class="portrait-photo groom-photo">
+                <img
+                  width="1600"
+                  height="2400"
+                  data-photo="groom"
+                  src="./images/wedding-preview.jpg"
+                  alt="Chú rể Thanh Xuân"
+                  loading="lazy"
+                />
+              </div>
+              <p class="script">Chú rể</p>
+              <h3 data-field="groom">Thanh Xuân</h3>
+            </article>
+
+            <article class="portrait reveal">
+              <div class="portrait-photo bride-photo">
+                <img
+                  width="1600"
+                  height="2400"
+                  data-photo="bride"
+                  src="./images/wedding-preview.jpg"
+                  alt="Cô dâu Mọng Tiền"
+                  loading="lazy"
+                />
+              </div>
+              <p class="script">Cô dâu</p>
+              <h3 data-field="bride">Mọng Tiền</h3>
+            </article>
+          </div>
+          <div class="families">
+            <div id="groom-family" hidden>
+              <h3>NHÀ TRAI</h3>
+              <p data-optional="groomFather" data-label="Bố"></p>
+              <p data-optional="groomMother" data-label="Mẹ"></p>
+            </div>
+            <div id="bride-family" hidden>
+              <h3>NHÀ GÁI</h3>
+              <p data-optional="brideFather" data-label="Bố"></p>
+              <p data-optional="brideMother" data-label="Mẹ"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="celebration section-pad" id="celebration">
+          <div class="event-card reveal">
+            <img
+              class="event-floral"
+              src="./images/flower.png"
+              width="1024"
+              height="1536"
+              loading="lazy"
+              alt=""
+            />
+            <div class="event-inner">
+              <span class="small-heart" aria-hidden="true">♡</span>
+              <h3>LỄ THÀNH HÔN</h3>
+              <p>Trân trọng kính mời</p>
+              <p class="script event-guest">Bạn cùng gia đình</p>
+              <p>Đến chung vui cùng chúng mình vào lúc</p>
+              <p class="event-time">
+                <span data-date="time">09:00</span> ·
+                <span data-date="weekday">THỨ BA</span>
+              </p>
+              <div class="event-date">
+                <span>THÁNG<strong data-date="month">12</strong></span
+                ><strong data-date="day">01</strong
+                ><span>NĂM<strong data-date="year">2026</strong></span>
+              </div>
+              <p data-optional="lunarDateLabel" hidden></p>
+              <svg
+                class="pin-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.3"
+                aria-hidden="true"
+              >
+                <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+              <h4 class="script">Địa điểm tổ chức</h4>
+              <p class="event-address" data-field="address">
+                Ấp Cây Gòn, xã Phong Thạnh,<br />tỉnh Vĩnh Long
+              </p>
+              <a
+                class="button"
+                id="map-link"
+                href="https://www.google.com/maps/search/?api=1&query=%E1%BA%A4p%20C%C3%A2y%20G%C3%B2n%2C%20x%C3%A3%20Phong%20Th%E1%BA%A1nh%2C%20t%E1%BB%89nh%20V%C4%A9nh%20Long"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Xem bản đồ <span aria-hidden="true">↗</span></a
+              >
+              <p class="event-closing">
+                Sự hiện diện của bạn là niềm vui của chúng mình!
+              </p>
+            </div>
+          </div>
+          <div class="event-card reception reveal" id="reception-card" hidden>
+            <div class="event-inner">
+              <h3>TIỆC THÂN MẬT</h3>
+              <p>Trân trọng kính mời bạn cùng gia đình</p>
+              <p class="event-time" data-reception="time"></p>
+              <p class="reception-date" data-reception="dateLabel"></p>
+              <p data-reception="lunarDateLabel" hidden></p>
+              <h4 class="script" data-reception="venue"></h4>
+              <p class="event-address" data-reception="address"></p>
+              <a
+                class="button"
+                id="reception-map"
+                target="_blank"
+                rel="noopener noreferrer"
+                hidden
+                >Xem bản đồ ↗</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="album section-pad" id="album">
+          <div class="album-heading reveal">
+            <h2 class="script">Album hình cưới</h2>
+            <span></span>
+          </div>
+          <div class="album-grid">
+            <button
+              class="album-photo reveal"
+              data-gallery="0"
+              aria-label="Xem ảnh cưới 1"
+            >
+              <img
+                width="1600"
+                height="2400"
+                data-photo="album1"
+                src="./images/wedding-preview.jpg"
+                alt="Khoảnh khắc ngày chung đôi"
+                loading="lazy"
+              />
+            </button>
+            <button
+              class="album-photo reveal"
+              data-gallery="1"
+              aria-label="Xem ảnh cưới 2"
+            >
+              <img
+                width="1600"
+                height="2400"
+                data-photo="album2"
+                src="./images/wedding-preview.jpg"
+                alt="Cùng nhau đi qua những tháng năm"
+                loading="lazy"
+              />
+            </button>
+            <button
+              class="album-photo reveal"
+              data-gallery="2"
+              aria-label="Xem ảnh cưới 3"
+            >
+              <img
+                width="1600"
+                height="2400"
+                data-photo="album3"
+                src="./images/wedding-preview.jpg"
+                alt="Nắm tay nhau trong ngày cưới"
+                loading="lazy"
+              />
+            </button>
+            <button
+              class="album-photo reveal"
+              data-gallery="3"
+              aria-label="Xem ảnh cưới 4"
+            >
+              <img
+                width="1600"
+                height="2400"
+                data-photo="album4"
+                src="./images/wedding-preview.jpg"
+                alt="Khởi đầu hành trình hạnh phúc"
+                loading="lazy"
+              />
+            </button>
+          </div>
+        </section>
+
+        <section
+          class="countdown section-pad reveal"
+          aria-labelledby="countdown-title"
+        >
+          <h2 class="script" id="countdown-title">Đếm ngược ngày chung đôi</h2>
+          <div
+            class="countdown-grid"
+            role="timer"
+            aria-label="Thời gian còn lại đến lễ cưới"
+          >
+            <div><strong id="days">00</strong><span>NGÀY</span></div>
+            <i>:</i>
+            <div><strong id="hours">00</strong><span>GIỜ</span></div>
+            <i>:</i>
+            <div><strong id="minutes">00</strong><span>PHÚT</span></div>
+            <i>:</i>
+            <div><strong id="seconds">00</strong><span>GIÂY</span></div>
+          </div>
+          <p class="countdown-caption" id="countdown-caption">
+            Và rồi, hai chúng mình sẽ thành một gia đình.
+          </p>
+          <span class="countdown-heart" aria-hidden="true">♡</span>
+        </section>
+
+        <section class="thank-you">
+          <img
+            width="1600"
+            height="2400"
+            data-photo="closing"
+            src="./images/wedding-preview.jpg"
+            alt="Thanh Xuân và Mọng Tiền"
+            loading="lazy"
+          />
+          <div class="thank-you-content reveal">
+            <h2 class="script">Cảm ơn bạn!</h2>
+            <p>
+              Cảm ơn vì đã là một phần trong câu chuyện của chúng mình.<br />Rất
+              mong được đón bạn và cùng lưu giữ<br />những kỷ niệm thật đẹp.
+            </p>
+            <p class="closing-names">
+              <span data-field="groom">Thanh Xuân</span>
+              <span class="script">&</span>
+              <span data-field="bride">Mọng Tiền</span>
+            </p>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <p>
+          MADE WITH LOVE <span>♡</span>
+          <span data-field="dateShort">01.12.2026</span>
+        </p>
+        <a href="#home">Về đầu thiệp ↑</a>
+      </footer>
+    </div>
+    <button
+      class="music-button"
+      id="music-toggle"
+      aria-label="Bật nhạc nền"
+      aria-pressed="false"
+      hidden
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path d="M9 18V5l11-2v13M9 8l11-2" />
+        <ellipse cx="6" cy="18" rx="3" ry="2.5" />
+        <ellipse cx="17" cy="16" rx="3" ry="2.5" /></svg
+      ><span class="music-slash"></span>
+    </button>
+    <p class="audio-status" id="audio-status" role="status"></p>
+    <audio
+      id="wedding-audio"
+      loop
+      preload="none"
+      src="./audio/Beautiful%20In%20White.mp3"
+    ></audio>
+    <dialog class="lightbox" id="lightbox" aria-label="Album ảnh cưới">
+      <button class="lightbox-close" aria-label="Đóng ảnh">×</button
+      ><button class="lightbox-prev" aria-label="Ảnh trước">←</button>
+      <figure>
+        <img id="lightbox-image" alt="" />
+        <figcaption id="lightbox-caption" aria-live="polite"></figcaption>
+      </figure>
+      <button class="lightbox-next" aria-label="Ảnh tiếp theo">→</button>
+    </dialog>
+  </body>
+</html>
