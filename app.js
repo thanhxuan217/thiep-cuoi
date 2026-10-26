@@ -6,9 +6,6 @@ const openButton = document.querySelector("#open-invitation");
 const audio = document.querySelector("#wedding-audio");
 const musicButton = document.querySelector("#music-toggle");
 const audioStatus = document.querySelector("#audio-status");
-const preview =
-  ["localhost", "127.0.0.1", "[::1]", ""].includes(location.hostname) &&
-  new URLSearchParams(location.search).get("preview") === "1";
 
 document.querySelectorAll("[data-field]").forEach((element) => {
   element.textContent = wedding[element.dataset.field];
@@ -16,6 +13,12 @@ document.querySelectorAll("[data-field]").forEach((element) => {
 document.querySelectorAll("[data-photo]").forEach((image) => {
   image.src = wedding.photos[image.dataset.photo];
 });
+// Decode the configured cover photos before the paper starts to move.
+const coverPhotosReady = Promise.allSettled(
+  [...document.querySelectorAll(".photo-frame img, .envelope-flowers")].map(
+    (image) => image.decode(),
+  ),
+);
 const date = new Date(wedding.date);
 const parts = Object.fromEntries(
   new Intl.DateTimeFormat("vi-VN", {
@@ -37,9 +40,9 @@ document.querySelectorAll("[data-date]").forEach((element) => {
   element.textContent = parts[element.dataset.date];
 });
 function setOptional(element, value) {
-  element.hidden = !value && !preview;
+  element.hidden = false;
   element.classList.toggle("missing", !value);
-  element.textContent = `${element.dataset.label ? element.dataset.label + ": " : ""}${value || "Chưa điền"}`;
+  element.textContent = `${element.dataset.label ? element.dataset.label + ": " : ""}${value || "Chưa cung cấp"}`;
 }
 document
   .querySelectorAll("[data-optional]")
@@ -47,20 +50,19 @@ document
     setOptional(element, wedding[element.dataset.optional]),
   );
 ["groom", "bride"].forEach((side) => {
-  document.querySelector(`#${side}-family`).hidden =
-    !preview && !wedding[`${side}Father`] && !wedding[`${side}Mother`];
+  document.querySelector(`#${side}-family`).hidden = false;
 });
 const reception = wedding.reception;
-document.querySelector("#reception-card").hidden =
-  !preview && !(reception.time && reception.address);
+document.querySelector("#reception-card").hidden = false;
 document
   .querySelectorAll("[data-reception]")
   .forEach((element) =>
     setOptional(element, reception[element.dataset.reception]),
   );
-if (reception.mapUrl && reception.time && reception.address) {
+if (reception.mapUrl) {
   document.querySelector("#reception-map").href = reception.mapUrl;
   document.querySelector("#reception-map").hidden = false;
+  document.querySelector("#reception-map-placeholder").hidden = true;
 }
 document.querySelector("#map-link").href = wedding.mapUrl;
 audio.src = wedding.audio;
@@ -82,7 +84,23 @@ function startReveals() {
   );
   document
     .querySelectorAll(".reveal")
-    .forEach((element) => observer.observe(element));
+    .forEach((element) => {
+      if (!element.closest(".families")) observer.observe(element);
+    });
+  const familyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll(".reveal").forEach((element) => {
+            element.classList.add("visible");
+          });
+          familyObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.05, rootMargin: "0px 0px 64px 0px" },
+  );
+  familyObserver.observe(document.querySelector(".families"));
 }
 let audioMessageTimer;
 async function playMusic() {
@@ -112,43 +130,46 @@ musicButton.addEventListener("click", () => {
   if (audio.paused) playMusic();
   else audio.pause();
 });
+let openingTimer;
+let opened = false;
 function finishOpening() {
-  hero.classList.remove("is-opening", "is-closed");
+  if (opened) return;
+  opened = true;
+  clearTimeout(openingTimer);
+  hero.classList.add("is-open");
+  hero.classList.remove("is-opening");
+  hero.removeAttribute("aria-busy");
+  openButton.setAttribute("aria-expanded", "true");
   openButton.hidden = true;
   content.inert = false;
   document.querySelector("footer").inert = false;
   document.body.classList.remove("cover-active");
+  document.body.classList.add("invitation-open");
   musicButton.hidden = false;
   startReveals();
+  content.focus({ preventScroll: true });
 }
-if (reducedMotion.matches) {
-  finishOpening();
-} else {
-  hero.classList.add("is-closed");
-  openButton.hidden = false;
-  content.inert = true;
-  document.querySelector("footer").inert = true;
-  document.body.classList.add("cover-active");
-}
+openButton.hidden = false;
+content.inert = true;
+document.querySelector("footer").inert = true;
+document.body.classList.add("cover-active");
 openButton.addEventListener(
   "click",
-  () => {
+  async () => {
     openButton.disabled = true;
+    hero.setAttribute("aria-busy", "true");
     playMusic();
-    hero.classList.add("is-opening");
-    hero.classList.remove("is-closed");
-    setTimeout(
-      () => {
-        finishOpening();
-        content.focus({ preventScroll: true });
-      },
-      reducedMotion.matches ? 0 : 1800,
-    );
+    await coverPhotosReady;
+    hero.classList.add("is-open", "is-opening");
+    if (reducedMotion.matches) finishOpening();
+    else openingTimer = setTimeout(finishOpening, 2400);
   },
   { once: true },
 );
 reducedMotion.addEventListener("change", () => {
-  if (reducedMotion.matches) finishOpening();
+  if (reducedMotion.matches && hero.classList.contains("is-opening")) {
+    finishOpening();
+  }
 });
 
 const weddingTime = date.getTime();
@@ -161,7 +182,9 @@ function updateCountdown() {
     seconds: remaining % 60,
   };
   Object.entries(values).forEach(([id, value]) => {
-    document.getElementById(id).textContent = String(value).padStart(2, "0");
+    const element = document.getElementById(id);
+    const nextValue = String(value).padStart(2, "0");
+    if (element.textContent !== nextValue) element.textContent = nextValue;
   });
   if (!remaining) {
     document.querySelector("#countdown-title").textContent =
@@ -173,8 +196,23 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+const albumGrid = document.querySelector(".album-grid");
+const galleryButtons = wedding.album.map((src, index) => {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "album-photo reveal reveal-zoom";
+  button.setAttribute("aria-label", `Xem ảnh cưới ${index + 1}`);
+  const image = document.createElement("img");
+  image.src = src;
+  image.alt = `Ảnh cưới ${index + 1}`;
+  image.loading = "lazy";
+  button.append(image);
+  albumGrid.append(button);
+  return button;
+});
+document.querySelector("#album").hidden = galleryButtons.length === 0;
+
 const lightbox = document.querySelector("#lightbox");
-const galleryButtons = [...document.querySelectorAll("[data-gallery]")];
 const target = document.querySelector("#lightbox-image");
 const incoming = document.createElement("img");
 incoming.id = "lightbox-incoming";
@@ -186,6 +224,7 @@ let selectedPhoto = 0;
 let photoRequest = 0;
 let photoAnimation;
 async function showPhoto(index) {
+  if (!galleryButtons.length) return;
   selectedPhoto = (index + galleryButtons.length) % galleryButtons.length;
   const current = selectedPhoto;
   const request = ++photoRequest;
