@@ -26,6 +26,15 @@ Các mục chưa có dữ liệu hiện nhãn “Chưa cung cấp”, gồm tên
 
 ## Thay ảnh và nhạc
 
+Để giảm dung lượng ảnh, đặt ảnh gốc vào `images_backup/`, cài Pillow và chạy:
+
+```powershell
+python -m pip install Pillow
+python scripts/compress_images.py
+```
+
+Script ghi ảnh vào `images/`, giữ nguyên tên tệp (kể cả chữ hoa/thường) và thư mục con. Cạnh dài tối đa 2.048 px, chất lượng JPEG 80. PNG giữ nền trong suốt. Ảnh gốc không bị sửa; `images_backup/` được bỏ qua khi đưa lên GitHub.
+
 1. Thêm ảnh mới vào `images/`.
 2. Mở `wedding.js`. Sửa đường dẫn trong `photos` theo từng vị trí: `hero`, `heroBack`, `story`, `groom`, `bride`, `closing`. Với album, thêm hoặc xóa đường dẫn trong mảng `album` (cùng cấp với `photos`). Trang tự tạo ô ảnh theo đúng thứ tự của mảng, không cần sửa `index.html`. Mảng rỗng sẽ ẩn phần album. Album cần JavaScript để hiển thị.
 3. Nếu thay nhạc, thêm tệp vào `audio/` rồi sửa `audio` trong `wedding.js`.

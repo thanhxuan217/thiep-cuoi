@@ -55,8 +55,7 @@ window.WEDDING = {
     "./images/CS1A6770.JPG",
     "./images/CS1A6776.JPG",
     "./images/VPTT0766.JPG",
-    "./images/VPTT0894.JPG",
-    "./images/VPTT0935.jpg",
+    "./images/VPTT0894.JPG"
   ],
   photos: {
     hero: "./images/301A3479.jpg",
