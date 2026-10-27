@@ -6,7 +6,7 @@ window.WEDDING = {
   dateLabel: "01 . 12 . 2026",
   dateShort: "01.12.2026",
   address: "Ấp Cây Gòn, xã Phong Thạnh, tỉnh Vĩnh Long",
-  venue: "",
+  venue: "Tại Tư Gia Nhà Trai",
   // Có thể thay bằng liên kết ghim vị trí chính xác từ Google Maps.
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=" +
@@ -21,7 +21,7 @@ window.WEDDING = {
     time: "",
     dateLabel: "",
     lunarDateLabel: "",
-    venue: "",
+    venue: "Tại Tư Gia Nhà Trai",
     address: "",
     mapUrl: "",
   },

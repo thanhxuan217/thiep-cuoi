@@ -60,13 +60,14 @@
               </figure>
             </div>
           </div>
-          <div class="date-card-rise">
-            <div class="date-card">
-              <span class="ticket-label" aria-hidden="true">SAVE THE DATE</span>
-              <p>SAVE OUR DATE</p>
-              <strong data-field="dateShort">01.12.2026</strong>
-              <span class="script">We're getting married!</span>
-              <span class="card-rule"></span>
+          <div class="date-card-pocket">
+            <div class="date-card-rise">
+              <div class="date-card">
+                <span class="ticket-label" aria-hidden="true">SAVE THE DATE</span>
+                <p>SAVE OUR DATE</p>
+                <strong data-field="dateShort">01.12.2026</strong>
+                <span class="script">We're getting married!</span>
+              </div>
             </div>
           </div>
           <div class="envelope-front"></div>
@@ -109,7 +110,7 @@
               <span data-field="groom">Thanh Xuân</span> &amp;
               <span data-field="bride">Mọng Tiền</span>
             </p>
-            <p class="cover-date" data-field="dateLabel">01 . 12 . 2026</p>
+            <p class="cover-date" data-field="dateShort">01.12.2026</p>
           </div>
           <div class="hero-names">
             <h1 id="cover-title">
@@ -127,7 +128,7 @@
         <section class="story section-pad" id="story">
           <div class="story-heading">
             <h2 class="story-date">
-              <span class="script">Ngày</span
+              <span class="script" data-date="monthName">December</span
               ><strong class="story-day reveal" data-date="day">01</strong>
             </h2>
             <p class="story-month sr-only">
@@ -170,8 +171,8 @@
                   loading="lazy"
                 />
               </div>
-              <p class="script">Chú rể</p>
-              <h3 data-field="groom">Thanh Xuân</h3>
+              <p class="script reveal">Chú rể</p>
+              <h3 class="reveal" data-field="groom">Thanh Xuân</h3>
             </article>
 
             <article class="portrait reveal">
@@ -185,8 +186,8 @@
                   loading="lazy"
                 />
               </div>
-              <p class="script">Cô dâu</p>
-              <h3 data-field="bride">Mọng Tiền</h3>
+              <p class="script reveal">Cô dâu</p>
+              <h3 class="reveal" data-field="bride">Mọng Tiền</h3>
             </article>
           </div>
           <div class="families">
@@ -205,7 +206,7 @@
 
         <section class="celebration section-pad" id="celebration">
           <div class="event-card">
-            <div class="event-inner reveal reveal-zoom">
+            <div class="event-inner reveal">
               <h3>LỄ THÀNH HÔN</h3>
               <p class="event-time">
                 VÀO LÚC <span data-date="time">09:00</span> ·
@@ -227,7 +228,6 @@
               <h4
                 class="script"
                 data-optional="venue"
-                data-label="Địa điểm"
               ></h4>
               <p class="event-address" data-field="address">
                 Ấp Cây Gòn, xã Phong Thạnh,<br />tỉnh Vĩnh Long
@@ -243,7 +243,7 @@
             </div>
           </div>
           <div class="event-card reception" id="reception-card" hidden>
-            <div class="event-inner reveal reveal-zoom">
+            <div class="event-inner reveal">
               <h3>BỮA CƠM THÂN MẬT</h3>
               <p class="event-time" data-reception="time" data-label="Giờ"></p>
               <p
@@ -266,7 +266,6 @@
               <h4
                 class="script"
                 data-reception="venue"
-                data-label="Địa điểm"
               ></h4>
               <p
                 class="event-address"

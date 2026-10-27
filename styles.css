@@ -104,10 +104,12 @@ a:focus-visible {
   transition: padding-top 1100ms var(--ease);
 }
 .envelope-scene {
+  --insert-duration: 1700ms;
+  --insert-delay: 400ms;
   position: relative;
   width: 94%;
   max-width: 380px;
-  aspect-ratio: 1 / 1.85;
+  aspect-ratio: 1 / 1.62;
   margin: auto;
   perspective: 1200px;
   isolation: isolate;
@@ -129,8 +131,8 @@ a:focus-visible {
   position: absolute;
   left: 0;
   width: 100%;
-  top: 60%;
-  height: 37%;
+  top: 64%;
+  height: 33%;
   transition: top 1100ms var(--ease), height 1100ms var(--ease);
 }
 .envelope-back {
@@ -143,7 +145,7 @@ a:focus-visible {
 }
 .envelope-front {
   background: linear-gradient(145deg, #dbb7c6, var(--envelope));
-  clip-path: polygon(0 0, 50% 45%, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 50% 20%, 100% 0, 100% 100%, 0 100%);
   z-index: 4;
 }
 .envelope-front::before,
@@ -210,25 +212,33 @@ a:focus-visible {
 }
 .photo-rise {
   position: absolute;
-  width: 54%;
-  height: 49%;
-  top: 8%;
+  width: 51%;
+  height: 48%;
+  top: 5%;
   z-index: 2;
   transform: translateY(0);
 }
 .photo-rise-back {
-  right: 0;
+  right: 4%;
 }
 .photo-rise-front {
-  left: 0;
-  top: 22%;
+  left: 3%;
+  top: 19%;
   z-index: 3;
 }
 .photo-frame {
   height: 100%;
-  padding: 12px 12px 30px;
-  background: #e7dfe2;
-  box-shadow: 0 3px 9px #66565f20;
+  padding: 14px 14px 22px;
+  border: 1px solid #c3b6bd;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #eee6ea, #ded4d9 55%, #d3c7ce);
+  box-shadow:
+    inset 1px 1px 1px #fff9,
+    inset -1px -1px 1px #aa99a366,
+    1px 1px 0 #b8a8b1,
+    2px 2px 0 #ac9ba5,
+    3px 3px 0 #9e8c97,
+    5px 7px 8px #66565f38;
 }
 .photo-back {
   transform: rotate(3deg);
@@ -238,31 +248,46 @@ a:focus-visible {
 }
 .photo-frame img {
   object-position: 50% 65%;
-  outline: 1px solid #887c83;
-  outline-offset: 3px;
+  outline: 1px solid #665c64;
+  outline-offset: 0;
+}
+.date-card-pocket {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 3%);
+  z-index: 3;
 }
 .date-card-rise {
   position: absolute;
-  top: 53%;
-  left: 10%;
-  width: 83%;
-  z-index: 5;
+  top: 47%;
+  left: 9%;
+  width: 82%;
   transform: translateX(0);
+  filter:
+    drop-shadow(1px 1px 0 #bfaaa5)
+    drop-shadow(1px 1px 0 #b39b96)
+    drop-shadow(2px 5px 5px #66565f38);
 }
 .date-card {
-  padding: 18px 8px 16px 35px;
-  background: var(--cream);
-  box-shadow: 0 3px 8px #66565f24;
-  transform: rotate(-5deg);
+  padding: 18px 8px 42px calc(20% + 8px);
+  background: linear-gradient(135deg, #efdfd9, #e6d5cf 55%, #dcc6bf);
+  box-shadow: inset 1px 1px 1px #fff9, inset -1px -1px 1px #bba19a88;
+  mask-image:
+    radial-gradient(circle at 20% 0, transparent 11px, #000 9.5px),
+    radial-gradient(circle at 20% 100%, transparent 11px, #000 9.5px);
+  mask-composite: intersect;
+  transform: rotate(-9deg);
+  border-radius: 7px;
   position: relative;
 }
 .date-card::before {
   content: "";
   position: absolute;
-  left: 27px;
-  top: 0;
-  bottom: 0;
-  border-left: 1px dashed var(--line);
+  left: calc(20% - 1px);
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: radial-gradient(circle, #8d7a7d 1px, transparent 1.1px) center top / 2px 5px repeat-y;
 }
 .date-card p {
   font: 12px var(--serif);
@@ -279,19 +304,12 @@ a:focus-visible {
 }
 .ticket-label {
   position: absolute;
-  left: 8px;
+  left: 9%;
   top: 50%;
   writing-mode: vertical-rl;
   transform: translateY(-50%) rotate(180deg);
   font: 7px var(--serif);
   letter-spacing: 1px;
-}
-.card-rule {
-  display: block;
-  width: 36px;
-  height: 1px;
-  margin: 8px auto 0;
-  background: var(--line);
 }
 .envelope-flowers {
   position: absolute;
@@ -309,10 +327,10 @@ a:focus-visible {
   transform: rotate(-8deg);
 }
 .flowers-right {
-  right: -12%;
-  top: 48%;
+  right: -8%;
+  top: 46%;
   transform: rotate(-8deg);
-  width: 34%;
+  width: 31%;
 }
 .flowers-back {
   left: 42%;
@@ -346,12 +364,12 @@ a:focus-visible {
   font-size: 29px;
 }
 .closed-names {
-  font: 300 17px/1.8 var(--narrow);
+  font: 400 clamp(14px, 4.2vw, 18px)/1.8 var(--serif);
   text-transform: uppercase;
 }
 .cover-date {
-  font: 11px/1.8 var(--serif);
-  letter-spacing: 1px;
+  font: 12px/1.8 var(--serif);
+  font-variant-numeric: lining-nums;
   margin-top: 3px;
 }
 .hero h1 {
@@ -360,7 +378,7 @@ a:focus-visible {
   text-transform: uppercase;
 }
 .name-and {
-  font: 26px var(--script);
+  font: 400 26px "WindSong", var(--script);
   padding-inline: 3px;
   text-transform: none;
 }
@@ -389,26 +407,83 @@ a:focus-visible {
 /* Keep the first paint closed. Without JavaScript the full invitation is readable. */
 .js .hero:not(.is-open) {
   min-height: 100svh;
-  padding-top: max(28px, calc((100svh - 630px) / 2));
+  padding-top: max(24px, calc((100svh - 610px) / 2));
+  color: #80707e;
 }
 .js .hero:not(.is-open) .envelope-scene {
-  width: 86%;
-  aspect-ratio: 1 / 1.28;
+  width: 92%;
+  aspect-ratio: 1 / 1.24;
 }
 .js .hero:not(.is-open) :is(.envelope-back, .envelope-front, .envelope-flap, .open-envelope) {
-  top: 49%;
-  height: 48%;
+  top: 43%;
+  height: 54%;
+}
+.js .hero:not(.is-open) .envelope-back {
+  box-shadow: 0 3px 8px #9e768a20;
+}
+.js .hero:not(.is-open) .envelope-front {
+  background: linear-gradient(165deg, #d3b1c3, #cba8bc);
+}
+.js .hero:not(.is-open) .envelope-front::before {
+  clip-path: polygon(0 0, 50% 20%, 0 100%);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L50 20' fill='none' stroke='%23efdae4' stroke-opacity='.6' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100%,
+    linear-gradient(38deg, #d5b4c5, #ceacbf);
+}
+.js .hero:not(.is-open) .envelope-front::after {
+  clip-path: polygon(100% 0, 50% 20%, 100% 100%);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M50 20L100 100' fill='none' stroke='%23efdae4' stroke-opacity='.6' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100%,
+    linear-gradient(145deg, #d5b4c5, #ceacbf);
 }
 .js .hero:not(.is-open) .envelope-flap {
-  height: 27%;
+  height: 36%;
+  filter: drop-shadow(0 1px 0.7px #99758a38);
+}
+.js .hero:not(.is-open) .envelope-flap::before {
+  clip-path: none;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 184' preserveAspectRatio='none'%3E%3Cpath d='M0 0H400C398 28 374 49 350 68L213 176Q200 187 187 176L50 68C26 49 2 28 0 0Z'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  background: linear-gradient(165deg, #d6b5c6, #cba7bc);
+}
+.js .hero:not(.is-open) .wax-seal {
+  width: 14%;
+  height: auto;
+  aspect-ratio: 1;
+  left: 43%;
+  bottom: -20%;
+  border: 1.5px solid #89677c;
+  border-radius: 48% 52% 49% 51% / 51% 48% 52% 49%;
+  background: linear-gradient(145deg, #d0aebf, #cba7bc);
+  box-shadow: 0.5px 1.5px 2px #79526738, inset 0 0 0 1px #dfc1cf;
+}
+.js .hero:not(.is-open) .wax-seal::before {
+  content: "";
+  position: absolute;
+  inset: 2.5px;
+  border: 1px solid #9a7389;
+  border-radius: 51% 49% 48% 52% / 49% 52% 48% 51%;
+  box-shadow: inset 0 1px 1.5px #88607820;
+}
+.js .hero:not(.is-open) .open-hint {
+  top: 28%;
+  font-size: clamp(24px, 6.5vw, 29px);
+}
+.js .hero:not(.is-open) .hero-caption {
+  margin-top: 8px;
 }
 .js .hero:not(.is-open) .flowers-left {
-  left: -16%;
-  top: 29%;
+  left: -13%;
+  top: 21%;
+  width: 32%;
+  transform: rotate(-4deg);
 }
 .js .hero:not(.is-open) .flowers-right {
-  right: -15%;
-  top: 69%;
+  right: -12%;
+  top: 64%;
+  width: 32%;
+  transform: rotate(-4deg);
 }
 .js .hero:not(.is-open) .open-hint,
 .js .hero:not(.is-open) .cover-details,
@@ -444,17 +519,14 @@ a:focus-visible {
 }
 .is-opening .photo-rise {
   transition:
-    transform 1100ms 400ms var(--ease),
-    visibility 0s 400ms;
-}
-.is-opening .photo-rise-back {
-  transition-delay: 580ms;
+    transform var(--insert-duration) var(--insert-delay) var(--ease),
+    visibility 0s var(--insert-delay);
 }
 .is-opening .date-card-rise {
   transition:
-    transform 800ms 1250ms var(--ease),
-    opacity 250ms 1250ms,
-    visibility 0s 1250ms;
+    transform var(--insert-duration) var(--insert-delay) var(--ease),
+    opacity 250ms var(--insert-delay),
+    visibility 0s var(--insert-delay);
 }
 .is-opening .flowers-back {
   transition:
@@ -506,18 +578,19 @@ a:focus-visible {
   margin: 5px 0 0;
 }
 .story-date .script {
-  font-size: 28px;
+  font: 400 28px/1.5 "WindSong", var(--script);
 }
 .story-date strong {
   display: inline-block;
   min-width: 105px;
-  font: 400 112px/1 var(--script);
+  font: 400 112px/1 "WindSong", var(--script);
   color: #554852;
 }
 .story-heading > p {
   font: 300 16px/1.55 var(--narrow);
 }
 .story-quote {
+  text-align: right;
   text-transform: uppercase;
 }
 .story-photo {
@@ -544,7 +617,7 @@ a:focus-visible {
   margin-bottom: 36px;
 }
 .couple-portraits {
-  gap: 6px;
+  gap: 0px;
   padding: 0 8px 24px;
   align-items: start;
 }
@@ -554,11 +627,13 @@ a:focus-visible {
   text-align: center;
   background: #eee4e9;
   padding: 7px 7px 14px;
-  box-shadow: 0 3px 5px #66565f26;
+  box-shadow:
+    0 7px 14px -4px #66565f40,
+    0 2px 4px #66565f26;
 }
 .portrait:first-child {
   z-index: 1;
-  rotate: -8deg;
+  rotate: -4deg;
   translate: 0 20px;
 }
 .portrait:nth-child(2) {
@@ -599,11 +674,14 @@ a:focus-visible {
   font-style: italic;
 }
 .event-card {
+  --line: #a797a0;
   position: relative;
   padding: 24px 18px;
-  background: var(--card);
+  background: #e2d7dc;
   margin-bottom: 22px;
-  box-shadow: 0 3px 5px #66565f26;
+  box-shadow:
+    0 7px 14px -4px #66565f40,
+    0 2px 4px #66565f26;
 }
 .event-inner {
   position: relative;
@@ -637,7 +715,7 @@ a:focus-visible {
   color: var(--accent);
 }
 .event-inner h4 {
-  font-size: 29px;
+  font: 400 clamp(27px, 7.2vw, 32px)/1.5 var(--script);
   margin-top: 6px;
   text-transform: none;
 }
@@ -697,6 +775,7 @@ a:focus-visible {
   margin-bottom: 22px;
 }
 .album-heading h2 {
+  font-family: "WindSong", var(--script);
   font-size: 30px;
   white-space: nowrap;
 }
@@ -737,6 +816,8 @@ a:focus-visible {
   font: 400 34px/1.5 "WindSong", var(--script);
   text-align: left;
   margin-bottom: 8px;
+  rotate: -5deg;
+  transform-origin: left center;
 }
 .countdown-grid {
   position: relative;
@@ -938,6 +1019,10 @@ footer a {
   --reveal-distance: 30px;
   --reveal-duration: 800ms;
 }
+.js-reveal .portrait > .reveal {
+  --reveal-distance: 40px;
+  --reveal-duration: 1500ms;
+}
 .js-reveal .story-day {
   --reveal-distance: 100px;
   --reveal-duration: 1100ms;
@@ -955,12 +1040,26 @@ footer a {
 .js-reveal .couple .section-heading.visible {
   transform: scale(1);
 }
-.js-reveal .event-inner {
-  --reveal-duration: 700ms;
-  transform-origin: center top;
+.js-reveal .couple .section-heading {
+  --reveal-duration: 1600ms;
+}
+.js-reveal .event-inner.reveal {
+  opacity: 1;
+  transform: none;
+}
+.js-reveal .event-inner > * {
+  opacity: 0;
+  transform: scale(0.65);
+  transition:
+    opacity 1400ms var(--ease),
+    transform 1400ms var(--ease);
+}
+.js-reveal .event-inner.visible > * {
+  opacity: 1;
+  transform: scale(1);
 }
 .js-reveal .families > .reveal {
-  --reveal-duration: 600ms;
+  --reveal-duration: 1500ms;
 }
 .js-reveal .families > :first-child {
   transform: translateX(-100px);
@@ -1032,6 +1131,12 @@ footer a {
   .envelope-scene {
     width: 87%;
   }
+  .date-card-rise {
+    top: 45%;
+  }
+  .date-card {
+    padding-top: 14px;
+  }
   .date-card strong {
     font-size: 19px;
   }
@@ -1064,6 +1169,7 @@ footer a {
   .js-reveal .reveal,
   .js-reveal .couple .section-heading,
   .js-reveal .families > .reveal,
+  .js-reveal .event-inner > *,
   .js-reveal .thank-you-content > *,
   .js-reveal .countdown :is(h2, .countdown-caption) {
     opacity: 1;

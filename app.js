@@ -36,6 +36,10 @@ const parts = Object.fromEntries(
 );
 parts.time = `${parts.hour}:${parts.minute}`;
 parts.weekday = parts.weekday.toLocaleUpperCase("vi-VN");
+parts.monthName = new Intl.DateTimeFormat("en-US", {
+  timeZone: "Asia/Ho_Chi_Minh",
+  month: "long",
+}).format(date);
 document.querySelectorAll("[data-date]").forEach((element) => {
   element.textContent = parts[element.dataset.date];
 });
