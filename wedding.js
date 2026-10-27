@@ -63,6 +63,6 @@ window.WEDDING = {
     story: "./images/301A2916.jpg",
     groom: "./images/301A3189.jpg",
     bride: "./images/301A3086.jpg",
-    closing: "./images/CS1A6509.jpg",
+    closing: "./images/CS1A6509.JPG",
   },
 };
