@@ -1085,6 +1085,7 @@ footer a {
 }
 .js-reveal .countdown .countdown-caption {
   transform: translateX(100px);
+  transition-delay: 1100ms;
 }
 .js-reveal .countdown.visible :is(h2, .countdown-caption) {
   opacity: 1;
