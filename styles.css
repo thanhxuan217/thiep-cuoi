@@ -415,6 +415,18 @@ a:focus-visible {
   aspect-ratio: 1 / 1.24;
 }
 .js .hero:not(.is-open) :is(.envelope-back, .envelope-front, .envelope-flap, .open-envelope) {
+  transform-origin: 50% 0;
+  animation: envelope-breathe 4000ms ease-in-out infinite;
+}
+@keyframes envelope-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+.js .hero:not(.is-open) :is(.envelope-back, .envelope-front, .envelope-flap, .open-envelope) {
   top: 43%;
   height: 54%;
 }
