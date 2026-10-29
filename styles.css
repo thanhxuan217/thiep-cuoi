@@ -104,7 +104,7 @@ a:focus-visible {
   transition: padding-top 1100ms var(--ease);
 }
 .envelope-scene {
-  --insert-duration: 1700ms;
+  --insert-duration: 1100ms;
   --insert-delay: 400ms;
   position: relative;
   width: 94%;
@@ -228,17 +228,16 @@ a:focus-visible {
 }
 .photo-frame {
   height: 100%;
-  padding: 14px 14px 22px;
-  border: 1px solid #c3b6bd;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #eee6ea, #ded4d9 55%, #d3c7ce);
+  padding: 12px 12px 16px;
+  border: 1px solid #c4b8c0;
+  border-radius: 5px;
+  background: linear-gradient(115deg, #eee7eb, #e1d7de 65%, #d8cdd5);
   box-shadow:
-    inset 1px 1px 1px #fff9,
-    inset -1px -1px 1px #aa99a366,
-    1px 1px 0 #b8a8b1,
-    2px 2px 0 #ac9ba5,
-    3px 3px 0 #9e8c97,
-    5px 7px 8px #66565f38;
+    inset -1px -2px 3px #96818f40,
+    1px 2px 0 #a28b98,
+    -2px 3px 3px #382b3566,
+    -5px 7px 7px -2px #45313d5c,
+    -8px 12px 15px -5px #57404c40;
 }
 .photo-back {
   transform: rotate(3deg);
@@ -248,8 +247,8 @@ a:focus-visible {
 }
 .photo-frame img {
   object-position: 50% 65%;
-  outline: 1px solid #665c64;
-  outline-offset: 0;
+  border: 1px solid #655a63;
+  box-shadow: 0 2px 3px #76627018;
 }
 .date-card-pocket {
   position: absolute;
@@ -259,57 +258,81 @@ a:focus-visible {
 }
 .date-card-rise {
   position: absolute;
-  top: 47%;
-  left: 9%;
-  width: 82%;
+  top: 45%;
+  left: 12%;
+  width: 76%;
+  container-type: inline-size;
   transform: translateX(0);
+  isolation: isolate;
   filter:
-    drop-shadow(1px 1px 0 #bfaaa5)
-    drop-shadow(1px 1px 0 #b39b96)
-    drop-shadow(2px 5px 5px #66565f38);
+    drop-shadow(-1px 2px 1px #382b3580)
+    drop-shadow(-3px 4px 2.5px #45313d66)
+    drop-shadow(-6px 8px 7px #57404c40);
+}
+.date-card-rise::before,
+.date-card {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 182' preserveAspectRatio='none'%3E%3Cpath d='M0 0H45Q48 0 48 3A12 12 0 0 0 72 3Q72 0 75 0H300V182H75Q72 182 72 179A12 12 0 0 0 48 179Q48 182 45 182H0Z'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  transform: perspective(800px) rotateY(-9deg) rotateX(6deg) rotate(-11deg);
+  border-radius: 9px;
+}
+.date-card-rise::before {
+  content: "";
+  position: absolute;
+  inset: 2px -1px -2px 1px;
+  background: linear-gradient(135deg, #c5afac, #a98c90);
+  z-index: 0;
 }
 .date-card {
-  padding: 18px 8px 42px calc(20% + 8px);
-  background: linear-gradient(135deg, #efdfd9, #e6d5cf 55%, #dcc6bf);
-  box-shadow: inset 1px 1px 1px #fff9, inset -1px -1px 1px #bba19a88;
-  mask-image:
-    radial-gradient(circle at 20% 0, transparent 11px, #000 9.5px),
-    radial-gradient(circle at 20% 100%, transparent 11px, #000 9.5px);
-  mask-composite: intersect;
-  transform: rotate(-9deg);
-  border-radius: 7px;
+  --ticket-serif: "Cormorant Garamond", Georgia, serif;
+  aspect-ratio: 1.65;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2cqw;
+  padding: 7% 4% 12% 24%;
+  color: #65585d;
+  background: linear-gradient(135deg, #f0e5e2, #e9dcda 65%, #e2d1d0);
+  box-shadow: inset -1px -2px 3px #ac909333;
   position: relative;
+  z-index: 1;
 }
 .date-card::before {
   content: "";
   position: absolute;
   left: calc(20% - 1px);
-  top: 14px;
-  bottom: 14px;
+  top: 16px;
+  bottom: 16px;
   width: 2px;
-  background: radial-gradient(circle, #8d7a7d 1px, transparent 1.1px) center top / 2px 5px repeat-y;
+  background: radial-gradient(circle, #78676c 0.7px, transparent 1px) center top / 2px 5px repeat-y;
 }
 .date-card p {
-  font: 12px var(--serif);
-  letter-spacing: 1.5px;
+  font: 400 5.7cqw/1.2 var(--ticket-serif);
+  letter-spacing: 0.015em;
 }
 .date-card strong {
   display: block;
-  font: clamp(19px, 5.6vw, 27px)/1.8 var(--serif);
-  letter-spacing: 1px;
+  font: 400 10.5cqw/1.15 var(--ticket-serif);
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
 }
 .date-card .script {
   display: block;
-  font-size: 18px;
+  font: 400 8cqw/1.3 var(--script);
+  white-space: nowrap;
 }
 .ticket-label {
   position: absolute;
-  left: 9%;
+  left: 8%;
   top: 50%;
   writing-mode: vertical-rl;
   transform: translateY(-50%) rotate(180deg);
-  font: 7px var(--serif);
-  letter-spacing: 1px;
+  font: 400 3.2cqw/1 var(--ticket-serif);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 .envelope-flowers {
   position: absolute;
@@ -333,10 +356,10 @@ a:focus-visible {
   width: 31%;
 }
 .flowers-back {
-  left: 42%;
-  top: 1%;
-  width: 25%;
-  transform: rotate(18deg);
+  left: 24%;
+  top: 7%;
+  width: 24%;
+  transform: rotate(-18deg);
   z-index: 1;
 }
 .open-envelope {
@@ -384,14 +407,14 @@ a:focus-visible {
 }
 .handdrawn-heart {
   display: block;
-  width: 70px;
-  height: 110px;
+  width: 82px;
+  height: 129px;
   margin: 22px auto 0;
-  color: #9692a6;
+  color: #8d8797;
 }
 .handdrawn-heart path {
   stroke: currentColor;
-  stroke-width: 1.8;
+  stroke-width: 2.8;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -542,11 +565,11 @@ a:focus-visible {
 }
 .is-opening .flowers-back {
   transition:
-    opacity 600ms 800ms var(--ease),
-    visibility 0s 800ms;
+    opacity 300ms calc(var(--insert-delay) + var(--insert-duration)) var(--ease),
+    visibility 0s calc(var(--insert-delay) + var(--insert-duration));
 }
 .is-opening .hero-names {
-  animation: show-names 400ms 2000ms var(--ease) both;
+  animation: show-names 400ms 1400ms var(--ease) both;
 }
 @keyframes open-flap {
   0% {
@@ -1155,21 +1178,6 @@ footer a {
   }
   .envelope-scene {
     width: 87%;
-  }
-  .date-card-rise {
-    top: 45%;
-  }
-  .date-card {
-    padding-top: 14px;
-  }
-  .date-card strong {
-    font-size: 19px;
-  }
-  .date-card p {
-    font-size: 10px;
-  }
-  .date-card .script {
-    font-size: 16px;
   }
   .portrait-photo {
     height: 180px;

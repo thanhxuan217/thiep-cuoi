@@ -166,7 +166,7 @@ openButton.addEventListener(
     await coverPhotosReady;
     hero.classList.add("is-open", "is-opening");
     if (reducedMotion.matches) finishOpening();
-    else openingTimer = setTimeout(finishOpening, 2400);
+    else openingTimer = setTimeout(finishOpening, 1800);
   },
   { once: true },
 );
