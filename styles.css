@@ -212,43 +212,44 @@ a:focus-visible {
 }
 .photo-rise {
   position: absolute;
-  width: 51%;
+  width: 54%;
   height: 48%;
   top: 5%;
   z-index: 2;
   transform: translateY(0);
 }
 .photo-rise-back {
-  right: 4%;
+  right: 3%;
 }
 .photo-rise-front {
-  left: 3%;
-  top: 19%;
+  left: 4%;
+  top: 21%;
+  width: 58%;
   z-index: 3;
 }
 .photo-frame {
   height: 100%;
-  padding: 12px 12px 16px;
+  padding: 10% 5.5% 9%;
   border: 1px solid #c4b8c0;
-  border-radius: 5px;
-  background: linear-gradient(115deg, #eee7eb, #e1d7de 65%, #d8cdd5);
+  border-radius: 6px;
+  background: linear-gradient(115deg, #eee7eb, #e2d9df 65%, #d9cfd7);
   box-shadow:
-    inset -1px -2px 3px #96818f40,
-    1px 2px 0 #a28b98,
-    -2px 3px 3px #382b3566,
-    -5px 7px 7px -2px #45313d5c,
-    -8px 12px 15px -5px #57404c40;
+    inset 1px 1px 0 #fff9fc,
+    inset -1px -1px 2px #96818f30,
+    -1px 1px 0 #a28b98,
+    -3px 4px 5px #45313d30,
+    -6px 9px 12px -5px #57404c38;
 }
 .photo-back {
-  transform: rotate(3deg);
+  transform: rotate(2deg);
 }
 .photo-front {
-  transform: rotate(-7deg);
+  transform: rotate(-12deg);
 }
 .photo-frame img {
   object-position: 50% 65%;
-  border: 1px solid #655a63;
-  box-shadow: 0 2px 3px #76627018;
+  border: 1px solid #000;
+  border-radius: 0;
 }
 .date-card-pocket {
   position: absolute;
