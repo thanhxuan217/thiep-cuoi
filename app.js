@@ -2,7 +2,6 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const audio = document.querySelector("#wedding-audio");
 const musicButton = document.querySelector("#music-toggle");
-const audioStatus = document.querySelector("#audio-status");
 
 document.querySelectorAll("[data-field]").forEach((element) => {
   element.textContent = wedding[element.dataset.field];
@@ -111,17 +110,12 @@ function startReveals() {
   );
   familyObserver.observe(document.querySelector(".families"));
 }
-let audioMessageTimer;
 async function playMusic() {
   try {
     await audio.play();
-    audioStatus.textContent = "";
+    removeMusicStartListeners();
   } catch {
-    audioStatus.textContent = "Chạm nút nốt nhạc để thử phát nhạc nền.";
-    clearTimeout(audioMessageTimer);
-    audioMessageTimer = setTimeout(() => {
-      audioStatus.textContent = "";
-    }, 5000);
+    // Không hiện thông báo nếu trình duyệt chưa phát được nhạc.
   }
 }
 function updateMusicButton() {
@@ -133,13 +127,29 @@ function updateMusicButton() {
     playing ? "Tắt nhạc nền" : "Bật nhạc nền",
   );
 }
+const musicStartEvents = ["click", "touchend", "keydown"];
+function removeMusicStartListeners() {
+  musicStartEvents.forEach((eventName) =>
+    document.removeEventListener(eventName, startMusicOnInteraction),
+  );
+}
+function startMusicOnInteraction(event) {
+  if (musicButton.contains(event.target)) return;
+  if (audio.paused) playMusic();
+}
 audio.addEventListener("play", updateMusicButton);
 audio.addEventListener("pause", updateMusicButton);
 musicButton.addEventListener("click", () => {
+  removeMusicStartListeners();
   if (audio.paused) playMusic();
   else audio.pause();
 });
 musicButton.hidden = false;
+musicStartEvents.forEach((eventName) =>
+  document.addEventListener(eventName, startMusicOnInteraction, { passive: true }),
+);
+updateMusicButton();
+playMusic();
 
 const weddingTime = date.getTime();
 function updateCountdown() {

@@ -6,26 +6,26 @@ window.WEDDING = {
   dateLabel: "01 . 12 . 2026",
   dateShort: "01.12.2026",
   address: "Ấp Cây Gòn, xã Phong Thạnh, tỉnh Vĩnh Long",
-  venue: "Tại Tư Gia Nhà Trai",
+  venue: "Tại Tư Gia Nhà Gái",
   // Có thể thay bằng liên kết ghim vị trí chính xác từ Google Maps.
   mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent("Ấp Cây Gòn, xã Phong Thạnh, tỉnh Vĩnh Long"),
+    "https://www.google.com/maps/search/?api=1&query=9.845965498510168,106.15233082749066",
   // Để trống nếu chưa có thông tin. Trang sẽ hiện nhãn “Chưa cung cấp”.
-  groomFather: "",
-  groomMother: "",
-  brideFather: "",
-  brideMother: "",
-  lunarDateLabel: "",
+  groomFather: "Huỳnh Quốc Dũng",
+  groomMother: "Võ Thị Hồng Phương",
+  brideFather: "Tống Văn Sự",
+  brideMother: "Trần Thị Mỹ Nga",
+  lunarDateLabel: "23/10",
   reception: {
-    time: "",
-    dateLabel: "",
-    lunarDateLabel: "",
-    venue: "Tại Tư Gia Nhà Trai",
-    address: "",
-    mapUrl: "",
+    time: "19:00",
+    dateLabel: "01 . 12 . 2026",
+    lunarDateLabel: "23/10",
+    venue: "Tại Tư Gia Nhà Gái",
+    address: "Ấp Cây Gòn, xã Phong Thạnh, tỉnh Vĩnh Long",
+    mapUrl:
+      "https://www.google.com/maps/search/?api=1&query=9.845965498510168,106.15233082749066",
   },
-  audio: "./audio/Beautiful In White.mp3",
+  audio: "./audio/audio-32-69.mp3",
   album: [
     "./images/301A4064.jpg",
     "./images/CS1A6171.jpg",

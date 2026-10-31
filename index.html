@@ -55,7 +55,7 @@
           <p class="hero-day"><span data-date="day">01</span>.<span data-date="month">12</span></p>
           <p class="hero-year"><span data-date="yearTop">20</span><span data-date="yearBottom">26</span></p>
         </div>
-        <p class="hero-lunar" id="hero-lunar" hidden></p>
+        <p class="hero-lunar" id="hero-lunar">(23/10)</p>
         <a class="hero-scroll" href="#content" aria-label="Xem nội dung thiệp cưới">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
         </a>
@@ -127,15 +127,15 @@
             </article>
           </div>
           <div class="families">
-            <div id="groom-family" class="reveal" hidden>
+            <div id="groom-family" class="reveal">
               <h3>NHÀ TRAI</h3>
-              <p data-optional="groomFather" data-label="Bố"></p>
-              <p data-optional="groomMother" data-label="Mẹ"></p>
+              <p data-optional="groomFather" data-label="Bố">Bố: Huỳnh Quốc Dũng</p>
+              <p data-optional="groomMother" data-label="Mẹ">Mẹ: Võ Thị Hồng Phương</p>
             </div>
-            <div id="bride-family" class="reveal" hidden>
+            <div id="bride-family" class="reveal">
               <h3>NHÀ GÁI</h3>
-              <p data-optional="brideFather" data-label="Bố"></p>
-              <p data-optional="brideMother" data-label="Mẹ"></p>
+              <p data-optional="brideFather" data-label="Bố">Bố: Tống Văn Sự</p>
+              <p data-optional="brideMother" data-label="Mẹ">Mẹ: Trần Thị Mỹ Nga</p>
             </div>
           </div>
         </section>
@@ -149,7 +149,7 @@
                 <span data-date="weekday">THỨ BA</span>
               </p>
               <p class="event-date" data-field="dateShort">01.12.2026</p>
-              <p data-optional="lunarDateLabel" data-label="Âm lịch"></p>
+              <p data-optional="lunarDateLabel" data-label="Âm lịch">Âm lịch: 23/10</p>
               <svg
                 class="pin-icon"
                 viewBox="0 0 24 24"
@@ -164,14 +164,14 @@
               <h4
                 class="script"
                 data-optional="venue"
-              ></h4>
+              >Tại Tư Gia Nhà Gái</h4>
               <p class="event-address" data-field="address">
                 Ấp Cây Gòn, xã Phong Thạnh,<br />tỉnh Vĩnh Long
               </p>
               <a
                 class="button"
                 id="map-link"
-                href="https://www.google.com/maps/search/?api=1&query=%E1%BA%A4p%20C%C3%A2y%20G%C3%B2n%2C%20x%C3%A3%20Phong%20Th%E1%BA%A1nh%2C%20t%E1%BB%89nh%20V%C4%A9nh%20Long"
+                href="https://www.google.com/maps/search/?api=1&amp;query=9.845965498510168,106.15233082749066"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Xem bản đồ</a
@@ -187,16 +187,16 @@
               loading="lazy"
             />
           </figure>
-          <div class="event-card reception" id="reception-card" hidden>
+          <div class="event-card reception" id="reception-card">
             <div class="event-inner reveal">
               <h3>LỄ XUẤT GIÁ</h3>
-              <p class="event-time" data-reception="time" data-label="Giờ"></p>
+              <p class="event-time" data-reception="time" data-label="Giờ">Giờ: 19:00</p>
               <p
                 class="reception-date"
                 data-reception="dateLabel"
                 data-label="Ngày"
-              ></p>
-              <p data-reception="lunarDateLabel" data-label="Âm lịch"></p>
+              >Ngày: 01 . 12 . 2026</p>
+              <p data-reception="lunarDateLabel" data-label="Âm lịch">Âm lịch: 23/10</p>
               <svg
                 class="pin-icon"
                 viewBox="0 0 24 24"
@@ -211,21 +211,21 @@
               <h4
                 class="script"
                 data-reception="venue"
-              ></h4>
+              >Tại Tư Gia Nhà Gái</h4>
               <p
                 class="event-address"
                 data-reception="address"
                 data-label="Địa chỉ"
-              ></p>
+              >Địa chỉ: Ấp Cây Gòn, xã Phong Thạnh, tỉnh Vĩnh Long</p>
               <a
                 class="button"
                 id="reception-map"
+                href="https://www.google.com/maps/search/?api=1&amp;query=9.845965498510168,106.15233082749066"
                 target="_blank"
                 rel="noopener noreferrer"
-                hidden
                 >Xem bản đồ</a
               >
-              <p id="reception-map-placeholder" class="missing">
+              <p id="reception-map-placeholder" class="missing" hidden>
                 Bản đồ: Chưa cung cấp
               </p>
             </div>
@@ -331,12 +331,12 @@
         <ellipse cx="17" cy="16" rx="3" ry="2.5" /></svg
       ><span class="music-slash"></span>
     </button>
-    <p class="audio-status" id="audio-status" role="status"></p>
     <audio
       id="wedding-audio"
+      autoplay
       loop
-      preload="none"
-      src="./audio/Beautiful%20In%20White.mp3"
+      preload="auto"
+      src="./audio/audio-32-69.mp3"
     ></audio>
     <dialog class="lightbox" id="lightbox" aria-label="Album ảnh cưới">
       <button class="lightbox-close" aria-label="Đóng ảnh">×</button

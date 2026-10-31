@@ -632,19 +632,6 @@ footer a {
 .playing .music-slash {
   display: none;
 }
-.audio-status {
-  position: fixed;
-  z-index: 11;
-  bottom: 75px;
-  right: 16px;
-  max-width: 260px;
-  background: var(--paper);
-  font-size: 15px;
-}
-.audio-status:not(:empty) {
-  padding: 10px 15px;
-  border: 1px solid var(--line);
-}
 .lightbox {
   width: 100vw;
   max-width: none;
