@@ -88,7 +88,13 @@ function startReveals() {
   document
     .querySelectorAll(".reveal")
     .forEach((element) => {
-      if (!element.closest(".families")) observer.observe(element);
+      if (element.closest(".families")) return;
+      const image = element.querySelector("img");
+      if (element.classList.contains("album-photo") && !image.complete) {
+        image.addEventListener("load", () => observer.observe(element), { once: true });
+      } else {
+        observer.observe(element);
+      }
     });
   const familyObserver = new IntersectionObserver(
     (entries) => {
@@ -166,6 +172,9 @@ const galleryButtons = wedding.album.map((src, index) => {
   button.className = "album-photo reveal reveal-zoom";
   button.setAttribute("aria-label", `Xem ảnh cưới ${index + 1}`);
   const image = document.createElement("img");
+  image.addEventListener("load", () => {
+    button.classList.toggle("is-landscape", image.naturalWidth > image.naturalHeight);
+  });
   image.src = src;
   image.alt = `Ảnh cưới ${index + 1}`;
   image.loading = "lazy";

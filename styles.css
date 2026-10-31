@@ -291,30 +291,26 @@ a:focus-visible {
   margin-bottom: 36px;
 }
 .couple-portraits {
-  gap: 0px;
-  padding: 0 8px 24px;
-  align-items: start;
+  gap: 16px;
+  margin-inline: -24px;
+  padding: 0 0 24px;
+  align-items: stretch;
 }
 .portrait {
   position: relative;
   min-width: 0;
   text-align: center;
   background: #eee4e9;
-  padding: 7px 7px 14px;
+  padding: 7px 0 14px;
   box-shadow:
     0 7px 14px -4px #66565f40,
     0 2px 4px #66565f26;
 }
 .portrait:first-child {
   z-index: 1;
-  rotate: -4deg;
-  translate: 0 20px;
-}
-.portrait:nth-child(2) {
-  rotate: 3deg;
 }
 .portrait-photo {
-  height: 215px;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   position: relative;
 }
@@ -356,6 +352,13 @@ a:focus-visible {
   box-shadow:
     0 7px 14px -4px #66565f40,
     0 2px 4px #66565f26;
+}
+.event-photo {
+  margin-bottom: 22px;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%);
+}
+.event-photo img {
+  height: auto;
 }
 .event-inner {
   position: relative;
@@ -459,18 +462,24 @@ a:focus-visible {
   flex: 1;
 }
 .album-grid {
-  column-count: 2;
-  column-gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 12px;
 }
 .album-photo {
   display: block;
   width: 100%;
-  margin-bottom: 12px;
   padding: 0;
   border: 0;
   background: transparent;
-  break-inside: avoid;
   overflow: hidden;
+}
+.album-photo:not(.is-landscape) + .album-photo.is-landscape {
+  grid-column: 1;
+}
+.album-photo:last-child {
+  grid-column: 1 / -1;
 }
 .album-photo img {
   height: auto;
@@ -726,6 +735,10 @@ footer a {
 .js-reveal .couple .section-heading.visible {
   transform: scale(1);
 }
+.js-reveal .album-photo {
+  --reveal-duration: 1800ms;
+  transition-timing-function: ease-in-out, ease-in-out, var(--ease);
+}
 .js-reveal .couple .section-heading {
   --reveal-duration: 1600ms;
 }
@@ -806,11 +819,11 @@ footer a {
   .section-pad {
     padding-inline: 20px;
   }
+  .couple-portraits {
+    margin-inline: -20px;
+  }
   .story {
     padding-inline: 0;
-  }
-  .portrait-photo {
-    height: 180px;
   }
   .portrait h3 {
     font-size: 15px;

@@ -43,7 +43,7 @@ Ví dụ cấu hình album trong `window.WEDDING`:
 
 ```js
 album: [
-  "./images/301A3735.jpg",
+  "./images/301A4064.jpg",
   "./images/301A3479.jpg",
   "./images/301A3519.jpg",
 ],

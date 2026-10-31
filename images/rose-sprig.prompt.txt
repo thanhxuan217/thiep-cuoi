@@ -1,0 +1,9 @@
+Generated with the built-in image_gen tool; transparent_background: true.
+
+Use case: photorealistic-natural
+Asset type: transparent botanical cutout for a pale dusty-pink wedding invitation website.
+Primary request: create one delicate small rose sprig, with one open dusty blush pink garden rose as the focal point, one smaller ivory cream rose slightly above it, one tiny rosebud, and a few restrained sage gray-green leaves on slender stems. Refined romantic wedding floristry, realistic soft layered rose petals and matte natural leaves.
+Composition: one isolated airy upright sprig, gently curved, rose heads in the middle, short fine stems below, narrow elegant silhouette, fully visible with modest transparent padding on all sides. Botanical decoration for the top of a wedding photo and edge of a save-the-date card; readable at 70-100px display width. Not a large bouquet.
+Lighting: soft diffuse daylight, subtle natural volume.
+Background: genuinely transparent alpha, empty gaps between leaves transparent.
+Constraints: flowers and leaves only, no pot, vase, ribbon, text, watermark, frame, paper, backdrop, glow, haze, background shadow, or colored halo. No hydrangea or calla lilies. Crisp clean cutout edges, preserve fine stems.
