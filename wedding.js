@@ -58,8 +58,7 @@ window.WEDDING = {
     "./images/VPTT0894.JPG"
   ],
   photos: {
-    hero: "./images/301A3479.jpg",
-    heroBack: "./images/301A3519.jpg",
+    hero: "./images/CS1A6466.jpg",
     story: "./images/301A2916.jpg",
     groom: "./images/301A3189.jpg",
     bride: "./images/301A3086.jpg",

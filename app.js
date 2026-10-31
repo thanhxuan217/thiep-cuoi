@@ -1,8 +1,5 @@
 ﻿const wedding = window.WEDDING;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const hero = document.querySelector(".hero");
-const content = document.querySelector("#content");
-const openButton = document.querySelector("#open-invitation");
 const audio = document.querySelector("#wedding-audio");
 const musicButton = document.querySelector("#music-toggle");
 const audioStatus = document.querySelector("#audio-status");
@@ -13,12 +10,6 @@ document.querySelectorAll("[data-field]").forEach((element) => {
 document.querySelectorAll("[data-photo]").forEach((image) => {
   image.src = wedding.photos[image.dataset.photo];
 });
-// Decode the configured cover photos before the paper starts to move.
-const coverPhotosReady = Promise.allSettled(
-  [...document.querySelectorAll(".photo-frame img, .envelope-flowers")].map(
-    (image) => image.decode(),
-  ),
-);
 const date = new Date(wedding.date);
 const parts = Object.fromEntries(
   new Intl.DateTimeFormat("vi-VN", {
@@ -35,7 +26,10 @@ const parts = Object.fromEntries(
     .map((part) => [part.type, part.value]),
 );
 parts.time = `${parts.hour}:${parts.minute}`;
+parts.weekdayLabel = parts.weekday;
 parts.weekday = parts.weekday.toLocaleUpperCase("vi-VN");
+parts.yearTop = parts.year.slice(0, 2);
+parts.yearBottom = parts.year.slice(2);
 parts.monthName = new Intl.DateTimeFormat("en-US", {
   timeZone: "Asia/Ho_Chi_Minh",
   month: "long",
@@ -43,6 +37,11 @@ parts.monthName = new Intl.DateTimeFormat("en-US", {
 document.querySelectorAll("[data-date]").forEach((element) => {
   element.textContent = parts[element.dataset.date];
 });
+if (wedding.lunarDateLabel) {
+  const lunarDate = document.querySelector("#hero-lunar");
+  lunarDate.textContent = `(${wedding.lunarDateLabel})`;
+  lunarDate.hidden = false;
+}
 function setOptional(element, value) {
   element.hidden = false;
   element.classList.toggle("missing", !value);
@@ -134,47 +133,7 @@ musicButton.addEventListener("click", () => {
   if (audio.paused) playMusic();
   else audio.pause();
 });
-let openingTimer;
-let opened = false;
-function finishOpening() {
-  if (opened) return;
-  opened = true;
-  clearTimeout(openingTimer);
-  hero.classList.add("is-open");
-  hero.classList.remove("is-opening");
-  hero.removeAttribute("aria-busy");
-  openButton.setAttribute("aria-expanded", "true");
-  openButton.hidden = true;
-  content.inert = false;
-  document.querySelector("footer").inert = false;
-  document.body.classList.remove("cover-active");
-  document.body.classList.add("invitation-open");
-  musicButton.hidden = false;
-  startReveals();
-  content.focus({ preventScroll: true });
-}
-openButton.hidden = false;
-content.inert = true;
-document.querySelector("footer").inert = true;
-document.body.classList.add("cover-active");
-openButton.addEventListener(
-  "click",
-  async () => {
-    openButton.disabled = true;
-    hero.setAttribute("aria-busy", "true");
-    playMusic();
-    await coverPhotosReady;
-    hero.classList.add("is-open", "is-opening");
-    if (reducedMotion.matches) finishOpening();
-    else openingTimer = setTimeout(finishOpening, 1800);
-  },
-  { once: true },
-);
-reducedMotion.addEventListener("change", () => {
-  if (reducedMotion.matches && hero.classList.contains("is-opening")) {
-    finishOpening();
-  }
-});
+musicButton.hidden = false;
 
 const weddingTime = date.getTime();
 function updateCountdown() {
@@ -291,3 +250,5 @@ lightbox.addEventListener("keydown", (event) => {
     showPhoto(selectedPhoto + (event.key === "ArrowLeft" ? -1 : 1));
   }
 });
+
+startReveals();

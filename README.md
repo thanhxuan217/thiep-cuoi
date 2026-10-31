@@ -4,13 +4,12 @@ Trang HTML, CSS và JavaScript tĩnh. Không cần cài thư viện hoặc chạ
 
 - Lễ cưới: 09:00, thứ Ba, ngày 01/12/2026 (giờ Việt Nam).
 - Địa điểm: Ấp Cây Gòn, xã Phong Thạnh, tỉnh Vĩnh Long.
-- Thiệp dọc rộng tối đa 480px. Bố cục theo clip tham chiếu: nền hồng nhạt, phong bì hồng bụi, khung ảnh giấy xám hồng và thẻ ngày cưới màu kem có đường xé dọc.
-- Toàn bộ phong bì có thể nhấn. Hoạt cảnh mở kéo dài 2,4 giây: nắp xoay quanh mép gấp trong 650 ms, hai ảnh nhô lên lệch nhau 180 ms, tấm Save Our Date trượt từ trái vào trong 800 ms. Mặt trước che chân ảnh; ảnh được tải và giải mã trước khi chuyển động.
-- Khi mở, bố cục phong bì tăng chiều cao trong 1,1 giây. Hoa trái chuyển xuống chân phong bì; hoa phải chuyển lên cạnh thẻ ngày cưới. Phần bên dưới dùng ngày cưới lớn, ảnh ngang toàn chiều rộng và album hai cột.
-- Nhạc bắt đầu khi khách bấm mở thiệp. Nút nốt nhạc dùng để bật hoặc tắt.
+- Thiệp dọc rộng tối đa 480px. Màn hình đầu có nền trắng hồng, chữ viết tay “Save the Date”, tên cô dâu chú rể, một ảnh đôi và ngày cưới. Không còn phong bì hoặc nút mở thiệp.
+- Khi tải trang, mây hồng tự vén sang hai bên trong khoảng 3 giây. Hiệu ứng chỉ chạy một lần mỗi lần tải trang, không chặn thao tác cuộn hoặc bấm.
+- Nhấn nút nốt nhạc để bật hoặc tắt nhạc nền.
 - Album có thể phóng to, chuyển ảnh bằng nút hoặc phím mũi tên. Nhấn Escape để đóng.
 - Không có phần lời chúc hoặc xác nhận tham dự, theo yêu cầu.
-- Thiết bị bật `prefers-reduced-motion` vẫn thấy phong bì đóng. Nhấn mở để hiện ngay thiệp, không chạy hoạt cảnh. Nhạc chỉ phát sau thao tác của khách. Nội dung vẫn đọc được khi JavaScript bị tắt.
+- Thiết bị bật `prefers-reduced-motion` hiển thị ngay nội dung, không chạy hiệu ứng mây. Nội dung vẫn đọc được khi JavaScript bị tắt.
 
 ## Xem trên máy
 
@@ -36,7 +35,7 @@ python scripts/compress_images.py
 Script ghi ảnh vào `images/`, giữ nguyên tên tệp (kể cả chữ hoa/thường) và thư mục con. Cạnh dài tối đa 2.048 px, chất lượng JPEG 80. PNG giữ nền trong suốt. Ảnh gốc không bị sửa; `images_backup/` được bỏ qua khi đưa lên GitHub.
 
 1. Thêm ảnh mới vào `images/`.
-2. Mở `wedding.js`. Sửa đường dẫn trong `photos` theo từng vị trí: `hero`, `heroBack`, `story`, `groom`, `bride`, `closing`. Với album, thêm hoặc xóa đường dẫn trong mảng `album` (cùng cấp với `photos`). Trang tự tạo ô ảnh theo đúng thứ tự của mảng, không cần sửa `index.html`. Mảng rỗng sẽ ẩn phần album. Album cần JavaScript để hiển thị.
+2. Mở `wedding.js`. Sửa đường dẫn trong `photos` theo từng vị trí: `hero`, `story`, `groom`, `bride`, `closing`. Với album, thêm hoặc xóa đường dẫn trong mảng `album` (cùng cấp với `photos`). Trang tự tạo ô ảnh theo đúng thứ tự của mảng, không cần sửa `index.html`. Mảng rỗng sẽ ẩn phần album. Album cần JavaScript để hiển thị.
 3. Nếu thay nhạc, thêm tệp vào `audio/` rồi sửa `audio` trong `wedding.js`.
 4. Giữ đường dẫn tương đối, ví dụ `./images/anh-cuoi.jpg`. Tên tệp phải đúng chữ hoa và chữ thường.
 
@@ -58,7 +57,7 @@ Nếu đổi ngày cưới, sửa `date`, `dateLabel`, `dateShort`. Giữ múi g
 
 Nút bản đồ hiện mở kết quả tìm kiếm theo địa chỉ bạn cung cấp. Khi có ghim vị trí chính xác, thay `mapUrl` trong `wedding.js`.
 
-Hoa trang trí dùng `images/flower.png`. Font Barlow Condensed, Be Vietnam Pro, Great Vibes và Playfair Display tải từ Google Fonts. Trình duyệt dùng font dự phòng nếu không tải được font.
+Màn hình đầu giữ ảnh gốc tại `photos.hero`. Mây hồng được vẽ bằng CSS. Font WindSong dùng cho “Save the Date”; Great Vibes dùng cho tên; Playfair Display dùng cho ngày cưới. Các font này cùng Barlow Condensed và Be Vietnam Pro tải từ Google Fonts. Trình duyệt dùng font dự phòng nếu không tải được font.
 
 ## Đưa lên GitHub Pages
 

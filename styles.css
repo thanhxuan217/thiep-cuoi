@@ -1,9 +1,6 @@
 ﻿:root {
   --paper: #f6edf2;
   --card: #eddee5;
-  --envelope: #cfaabb;
-  --flap: #ddbecd;
-  --fold: #b98fa4;
   --cream: #f7f3eb;
   --ink: #66565f;
   --muted: #8d7a85;
@@ -29,16 +26,8 @@ body {
   font: 13px/1.8 var(--sans);
   font-weight: 400;
 }
-.js body:not(.invitation-open),
-body.cover-active,
 body.modal-open {
   overflow: hidden;
-}
-.js body:not(.invitation-open) #content,
-.js body:not(.invitation-open) footer,
-body.cover-active #content,
-body.cover-active footer {
-  display: none;
 }
 h1,
 h2,
@@ -99,325 +88,144 @@ a:focus-visible {
 }
 .hero {
   position: relative;
-  padding: 30px 24px 0;
-  text-align: center;
-  transition: padding-top 1100ms var(--ease);
-}
-.envelope-scene {
-  --insert-duration: 1100ms;
-  --insert-delay: 400ms;
-  position: relative;
-  width: 94%;
-  max-width: 380px;
-  aspect-ratio: 1 / 1.62;
-  margin: auto;
-  perspective: 1200px;
-  isolation: isolate;
-  transition: width 1100ms var(--ease), aspect-ratio 1100ms var(--ease);
-}
-.open-hint {
-  position: absolute;
-  top: 33%;
-  left: 0;
-  right: 0;
-  font-size: clamp(24px, 6vw, 29px);
-  opacity: 0;
-  transition: opacity 250ms ease;
-}
-.envelope-back,
-.envelope-front,
-.envelope-flap,
-.open-envelope {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  top: 64%;
-  height: 33%;
-  transition: top 1100ms var(--ease), height 1100ms var(--ease);
-}
-.envelope-back {
-  background: linear-gradient(180deg, #cba3b5, var(--envelope));
-  box-shadow:
-    0 14px 28px -12px #b98fa455,
-    0 1px 3px #b98fa430;
-  border-radius: 2px;
-  z-index: 0;
-}
-.envelope-front {
-  background: linear-gradient(145deg, #dbb7c6, var(--envelope));
-  clip-path: polygon(0 0, 50% 20%, 100% 0, 100% 100%, 0 100%);
-  z-index: 4;
-}
-.envelope-front::before,
-.envelope-front::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-.envelope-front::before {
-  background: linear-gradient(35deg, #ddbbca, var(--envelope));
-  clip-path: polygon(0 0, 52% 50%, 0 100%);
-  box-shadow: inset 1px 0 2px #b98fa430;
-}
-.envelope-front::after {
-  background: linear-gradient(145deg, #dfbecb, var(--envelope));
-  clip-path: polygon(100% 0, 48% 50%, 100% 100%);
-  box-shadow: inset -1px 0 2px #b98fa430;
-}
-.envelope-flap {
-  height: 22%;
-  transform-origin: 50% 0;
-  transform: rotateX(180deg);
-  z-index: 1;
-  filter: drop-shadow(0 2px 2px #b98fa440);
-}
-.envelope-flap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  background: linear-gradient(180deg, var(--flap), #dfbdcc);
-}
-.wax-seal {
-  position: absolute;
-  width: 31px;
-  height: 31px;
-  bottom: -12px;
-  left: calc(50% - 15.5px);
-  border: 3px double var(--fold);
-  border-radius: 50%;
-  background: linear-gradient(145deg, var(--flap), #d3acbe);
-  box-shadow:
-    0 2px 4px #b98fa440,
-    inset 0 0 0 2px var(--flap);
-  font: 25px/32px var(--serif);
-  color: var(--ink);
-  opacity: 0;
-}
-/* Clip the photos at the bottom of the pocket, under the opaque front folds. */
-.photo-pocket {
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(
-    -12% 0,
-    112% 0,
-    112% 60%,
-    100% 60%,
-    100% 96.5%,
-    0 96.5%,
-    0 60%,
-    -12% 60%
-  );
-  z-index: 2;
-}
-.photo-rise {
-  position: absolute;
-  width: 54%;
-  height: 48%;
-  top: 5%;
-  z-index: 2;
-  transform: translateY(0);
-}
-.photo-rise-back {
-  right: 3%;
-}
-.photo-rise-front {
-  left: 4%;
-  top: 21%;
-  width: 58%;
-  z-index: 3;
-}
-.photo-frame {
-  height: 100%;
-  padding: 10% 5.5% 9%;
-  border: 1px solid #c4b8c0;
-  border-radius: 6px;
-  background: linear-gradient(115deg, #eee7eb, #e2d9df 65%, #d9cfd7);
-  box-shadow:
-    inset 1px 1px 0 #fff9fc,
-    inset -1px -1px 2px #96818f30,
-    -1px 1px 0 #a28b98,
-    -3px 4px 5px #45313d30,
-    -6px 9px 12px -5px #57404c38;
-}
-.photo-back {
-  transform: rotate(2deg);
-}
-.photo-front {
-  transform: rotate(-12deg);
-}
-.photo-frame img {
-  object-position: 50% 65%;
-  border: 1px solid #000;
-  border-radius: 0;
-}
-.date-card-pocket {
-  position: absolute;
-  inset: 0;
-  clip-path: inset(0 0 3%);
-  z-index: 3;
-}
-.date-card-rise {
-  position: absolute;
-  top: 45%;
-  left: 12%;
-  width: 76%;
-  container-type: inline-size;
-  transform: translateX(0);
-  isolation: isolate;
-  filter:
-    drop-shadow(-1px 2px 1px #382b3580)
-    drop-shadow(-3px 4px 2.5px #45313d66)
-    drop-shadow(-6px 8px 7px #57404c40);
-}
-.date-card-rise::before,
-.date-card {
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 182' preserveAspectRatio='none'%3E%3Cpath d='M0 0H45Q48 0 48 3A12 12 0 0 0 72 3Q72 0 75 0H300V182H75Q72 182 72 179A12 12 0 0 0 48 179Q48 182 45 182H0Z'/%3E%3C/svg%3E");
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  transform: perspective(800px) rotateY(-9deg) rotateX(6deg) rotate(-11deg);
-  border-radius: 9px;
-}
-.date-card-rise::before {
-  content: "";
-  position: absolute;
-  inset: 2px -1px -2px 1px;
-  background: linear-gradient(135deg, #c5afac, #a98c90);
-  z-index: 0;
-}
-.date-card {
-  --ticket-serif: "Cormorant Garamond", Georgia, serif;
-  aspect-ratio: 1.65;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 2cqw;
-  padding: 7% 4% 12% 24%;
-  color: #65585d;
-  background: linear-gradient(135deg, #f0e5e2, #e9dcda 65%, #e2d1d0);
-  box-shadow: inset -1px -2px 3px #ac909333;
-  position: relative;
-  z-index: 1;
+  align-items: center;
+  height: 100svh;
+  padding: clamp(16px, 4svh, 40px) 24px 12px;
+  color: #392e32;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 0 18%, #f4dce380, transparent 45%),
+    radial-gradient(ellipse at 100% 85%, #edc6d280, transparent 42%),
+    #fffdfb;
 }
-.date-card::before {
-  content: "";
-  position: absolute;
-  left: calc(20% - 1px);
-  top: 16px;
-  bottom: 16px;
-  width: 2px;
-  background: radial-gradient(circle, #78676c 0.7px, transparent 1px) center top / 2px 5px repeat-y;
+.hero > * {
+  flex-shrink: 0;
 }
-.date-card p {
-  font: 400 5.7cqw/1.2 var(--ticket-serif);
-  letter-spacing: 0.015em;
-}
-.date-card strong {
-  display: block;
-  font: 400 10.5cqw/1.15 var(--ticket-serif);
-  font-variant-numeric: lining-nums;
-  letter-spacing: 0.035em;
+.save-the-date {
+  font: 400 clamp(32px, min(11vw, 7svh), 56px)/1.4 "WindSong", var(--script);
+  letter-spacing: -0.06em;
   white-space: nowrap;
 }
-.date-card .script {
-  display: block;
-  font: 400 8cqw/1.3 var(--script);
+.hero-names {
+  margin-top: 12px;
+  font: 400 clamp(24px, min(8vw, 5svh), 39px)/1.5 var(--script);
   white-space: nowrap;
-}
-.ticket-label {
-  position: absolute;
-  left: 8%;
-  top: 50%;
-  writing-mode: vertical-rl;
-  transform: translateY(-50%) rotate(180deg);
-  font: 400 3.2cqw/1 var(--ticket-serif);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.envelope-flowers {
-  position: absolute;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none;
-  z-index: 7;
-  width: 31%;
-  filter: saturate(0.8) drop-shadow(0 3px 2px #b98fa420);
-  transition: top 1100ms var(--ease), left 1100ms var(--ease), right 1100ms var(--ease);
-}
-.flowers-left {
-  left: -11%;
-  top: 80%;
-  transform: rotate(-8deg);
-}
-.flowers-right {
-  right: -8%;
-  top: 46%;
-  transform: rotate(-8deg);
-  width: 31%;
-}
-.flowers-back {
-  left: 24%;
-  top: 7%;
-  width: 24%;
-  transform: rotate(-18deg);
-  z-index: 1;
-}
-.open-envelope {
-  z-index: 8;
-  border: 0;
-  background: transparent;
-  border-radius: 2px;
-}
-.open-envelope:disabled {
-  cursor: default;
-}
-.hero-caption {
-  position: relative;
-  margin-top: 20px;
-  min-height: 105px;
-}
-.cover-details {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 250ms ease;
-}
-.cover-title {
-  font-size: 29px;
-}
-.closed-names {
-  font: 400 clamp(14px, 4.2vw, 18px)/1.8 var(--serif);
-  text-transform: uppercase;
-}
-.cover-date {
-  font: 12px/1.8 var(--serif);
-  font-variant-numeric: lining-nums;
-  margin-top: 3px;
-}
-.hero h1 {
-  font: 300 clamp(21px, 5.7vw, 27px)/1.8 var(--narrow);
-  margin: 8px -10px;
-  text-transform: uppercase;
 }
 .name-and {
-  font: 400 26px "WindSong", var(--script);
-  padding-inline: 3px;
-  text-transform: none;
+  margin-inline: 2px;
+  font-size: 0.85em;
 }
-.handdrawn-heart {
+.hero-photo {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 360px;
+  margin: 16px 0 8px;
+}
+.hero-photo img {
+  height: 100%;
+  object-fit: contain;
+}
+.hero-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 8px;
+  font-family: var(--serif);
+  font-variant-numeric: lining-nums;
+}
+.hero-time {
+  display: flex;
+  flex-direction: column;
+  padding-right: 18px;
+  border-right: 1px solid #a9989a;
+  font-size: 19px;
+  line-height: 1.5;
+}
+.hero-time span:last-child {
+  text-transform: capitalize;
+  font-size: 17px;
+}
+.hero-day {
+  font-size: clamp(39px, 11vw, 52px);
+  line-height: 1.2;
+}
+.hero-year {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  line-height: 1.35;
+}
+.hero-lunar {
+  margin-top: 16px;
+  font: italic 12px/1.7 var(--sans);
+  color: var(--muted);
+}
+.hero-scroll {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  min-height: 44px;
+  margin-top: auto;
+  padding-top: 12px;
+  color: #9c7f8b;
+}
+.hero-scroll svg {
+  width: 22px;
+  height: 22px;
+}
+/* Two soft clouds part once on entry; they never block the page. */
+.intro-clouds {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  pointer-events: none;
+}
+.js .intro-clouds {
   display: block;
-  width: 82px;
-  height: 129px;
-  margin: 22px auto 0;
-  color: #8d8797;
+  animation: clouds-finish 3s step-end forwards;
 }
-.handdrawn-heart path {
-  stroke: currentColor;
-  stroke-width: 2.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.cloud-panel {
+  position: absolute;
+  top: -15%;
+  bottom: -15%;
+  width: 78%;
+  filter: blur(18px);
+  background:
+    radial-gradient(ellipse at 76% 12%, #fff3f7 0 12%, transparent 31%),
+    radial-gradient(ellipse at 92% 31%, #edbfd2 0 12%, transparent 30%),
+    radial-gradient(ellipse at 71% 52%, #fff4f7 0 17%, transparent 37%),
+    radial-gradient(ellipse at 91% 73%, #efc3d3 0 15%, transparent 33%),
+    radial-gradient(ellipse at 73% 96%, #fff2f7 0 17%, transparent 34%),
+    linear-gradient(90deg, #efd0dd 35%, #f6dfe8 65%, #f3d3e0 78%, transparent 98%);
+  animation: clouds-part 2.7s 180ms cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+.cloud-left {
+  left: -12%;
+  --cloud-direction: -1;
+}
+.cloud-right {
+  right: -12%;
+  --cloud-direction: 1;
+  scale: -1 1;
+}
+@keyframes clouds-part {
+  0%, 8% {
+    translate: 0;
+  }
+  100% {
+    translate: calc(var(--cloud-direction) * 115%) 0;
+  }
+}
+@keyframes clouds-finish {
+  to {
+    visibility: hidden;
+  }
 }
 .sr-only {
   position: absolute;
@@ -427,176 +235,6 @@ a:focus-visible {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-/* Keep the first paint closed. Without JavaScript the full invitation is readable. */
-.js .hero:not(.is-open) {
-  min-height: 100svh;
-  padding-top: max(24px, calc((100svh - 610px) / 2));
-  color: #80707e;
-}
-.js .hero:not(.is-open) .envelope-scene {
-  width: 92%;
-  aspect-ratio: 1 / 1.24;
-}
-.js .hero:not(.is-open) :is(.envelope-back, .envelope-front, .envelope-flap, .open-envelope) {
-  transform-origin: 50% 0;
-  animation: envelope-breathe 4000ms ease-in-out infinite;
-}
-@keyframes envelope-breathe {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
-}
-.js .hero:not(.is-open) :is(.envelope-back, .envelope-front, .envelope-flap, .open-envelope) {
-  top: 43%;
-  height: 54%;
-}
-.js .hero:not(.is-open) .envelope-back {
-  box-shadow: 0 3px 8px #9e768a20;
-}
-.js .hero:not(.is-open) .envelope-front {
-  background: linear-gradient(165deg, #d3b1c3, #cba8bc);
-}
-.js .hero:not(.is-open) .envelope-front::before {
-  clip-path: polygon(0 0, 50% 20%, 0 100%);
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 100L50 20' fill='none' stroke='%23efdae4' stroke-opacity='.6' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100%,
-    linear-gradient(38deg, #d5b4c5, #ceacbf);
-}
-.js .hero:not(.is-open) .envelope-front::after {
-  clip-path: polygon(100% 0, 50% 20%, 100% 100%);
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M50 20L100 100' fill='none' stroke='%23efdae4' stroke-opacity='.6' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100%,
-    linear-gradient(145deg, #d5b4c5, #ceacbf);
-}
-.js .hero:not(.is-open) .envelope-flap {
-  height: 36%;
-  filter: drop-shadow(0 1px 0.7px #99758a38);
-}
-.js .hero:not(.is-open) .envelope-flap::before {
-  clip-path: none;
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 184' preserveAspectRatio='none'%3E%3Cpath d='M0 0H400C398 28 374 49 350 68L213 176Q200 187 187 176L50 68C26 49 2 28 0 0Z'/%3E%3C/svg%3E");
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  background: linear-gradient(165deg, #d6b5c6, #cba7bc);
-}
-.js .hero:not(.is-open) .wax-seal {
-  width: 14%;
-  height: auto;
-  aspect-ratio: 1;
-  left: 43%;
-  bottom: -20%;
-  border: 1.5px solid #89677c;
-  border-radius: 48% 52% 49% 51% / 51% 48% 52% 49%;
-  background: linear-gradient(145deg, #d0aebf, #cba7bc);
-  box-shadow: 0.5px 1.5px 2px #79526738, inset 0 0 0 1px #dfc1cf;
-}
-.js .hero:not(.is-open) .wax-seal::before {
-  content: "";
-  position: absolute;
-  inset: 2.5px;
-  border: 1px solid #9a7389;
-  border-radius: 51% 49% 48% 52% / 49% 52% 48% 51%;
-  box-shadow: inset 0 1px 1.5px #88607820;
-}
-.js .hero:not(.is-open) .open-hint {
-  top: 28%;
-  font-size: clamp(24px, 6.5vw, 29px);
-}
-.js .hero:not(.is-open) .hero-caption {
-  margin-top: 8px;
-}
-.js .hero:not(.is-open) .flowers-left {
-  left: -13%;
-  top: 21%;
-  width: 32%;
-  transform: rotate(-4deg);
-}
-.js .hero:not(.is-open) .flowers-right {
-  right: -12%;
-  top: 64%;
-  width: 32%;
-  transform: rotate(-4deg);
-}
-.js .hero:not(.is-open) .open-hint,
-.js .hero:not(.is-open) .cover-details,
-.js .hero:not(.is-open) .wax-seal {
-  opacity: 1;
-}
-.js .hero:not(.is-open) .envelope-flap {
-  transform: rotateX(0);
-  z-index: 6;
-}
-.js .hero:not(.is-open) .photo-rise {
-  transform: translateY(125%);
-  visibility: hidden;
-}
-.js .hero:not(.is-open) .date-card-rise {
-  transform: translateX(-120%);
-  opacity: 0;
-  visibility: hidden;
-}
-.js .hero:not(.is-open) .flowers-back,
-.js .hero:not(.is-open) .hero-names {
-  opacity: 0;
-  visibility: hidden;
-}
-.js .hero[aria-busy="true"] .open-hint {
-  opacity: 0;
-}
-.is-opening .envelope-flap {
-  animation: open-flap 650ms 100ms var(--ease) both;
-}
-.is-opening .wax-seal {
-  transition: opacity 220ms;
-}
-.is-opening .photo-rise {
-  transition:
-    transform var(--insert-duration) var(--insert-delay) var(--ease),
-    visibility 0s var(--insert-delay);
-}
-.is-opening .date-card-rise {
-  transition:
-    transform var(--insert-duration) var(--insert-delay) var(--ease),
-    opacity 250ms var(--insert-delay),
-    visibility 0s var(--insert-delay);
-}
-.is-opening .flowers-back {
-  transition:
-    opacity 300ms calc(var(--insert-delay) + var(--insert-duration)) var(--ease),
-    visibility 0s calc(var(--insert-delay) + var(--insert-duration));
-}
-.is-opening .hero-names {
-  animation: show-names 400ms 1400ms var(--ease) both;
-}
-@keyframes open-flap {
-  0% {
-    transform: rotateX(0);
-    z-index: 6;
-  }
-  49% {
-    z-index: 6;
-  }
-  50% {
-    z-index: 1;
-  }
-  100% {
-    transform: rotateX(180deg);
-    z-index: 1;
-  }
-}
-@keyframes show-names {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 .story {
   padding: 35px 0 0;
@@ -1171,15 +809,6 @@ footer a {
   .story {
     padding-inline: 0;
   }
-  .hero {
-    padding-inline: 18px;
-  }
-  .hero h1 {
-    font-size: 19px;
-  }
-  .envelope-scene {
-    width: 87%;
-  }
   .portrait-photo {
     height: 180px;
   }
@@ -1191,6 +820,9 @@ footer a {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .intro-clouds {
+    display: none !important;
+  }
   html {
     scroll-behavior: auto;
   }
@@ -1226,16 +858,4 @@ footer a {
 }
 .families h3 {
   font-size: 13px;
-}
-@media (max-height: 700px) {
-  .js .hero:not(.is-open) {
-    padding-top: 12px;
-    padding-bottom: 22px;
-  }
-  .js .hero:not(.is-open) .envelope-scene {
-    max-width: 290px;
-  }
-  .hero-caption {
-    margin-top: 18px;
-  }
 }

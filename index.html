@@ -10,8 +10,7 @@
     />
     <title>Thanh Xuân & Mọng Tiền — Thiệp cưới</title>
     <link rel="icon" href="./assets/heart.svg" type="image/svg+xml" />
-    <link rel="preload" as="image" href="./images/wedding-preview.jpg" />
-    <link rel="preload" as="image" href="./images/flower.png" />
+    <link rel="preload" as="image" href="./images/CS1A6171.jpg" />
     <script>
       document.documentElement.classList.add("js");
     </script>
@@ -26,103 +25,40 @@
     <script src="./app.js" defer></script>
   </head>
   <body>
+    <div class="intro-clouds" aria-hidden="true">
+      <div class="cloud-panel cloud-left"></div>
+      <div class="cloud-panel cloud-right"></div>
+    </div>
     <div class="invitation" id="invitation">
       <section class="hero" id="home" aria-labelledby="cover-title">
-        <div class="envelope-scene">
-          <p class="open-hint script">Nhấp để mở!!!</p>
-          <div class="envelope-back"></div>
-          <div class="envelope-flap">
-            <span class="wax-seal" aria-hidden="true"></span>
-          </div>
-          <div class="photo-pocket">
-            <div class="photo-rise photo-rise-back">
-              <figure class="photo-frame photo-back">
-                <img
-                  data-photo="heroBack"
-                  src="./images/301A3479.jpg"
-                  width="1600"
-                  height="2400"
-                  fetchpriority="high"
-                  alt="Ảnh cưới Thanh Xuân và Mọng Tiền"
-                />
-              </figure>
-            </div>
-            <div class="photo-rise photo-rise-front">
-              <figure class="photo-frame photo-front">
-                <img
-                  data-photo="hero"
-                  src="./images/301A3519.jpg"
-                  width="1600"
-                  height="2400"
-                  fetchpriority="high"
-                  alt="Cô dâu và chú rể trong ngày chung đôi"
-                />
-              </figure>
-            </div>
-          </div>
-          <div class="date-card-pocket">
-            <div class="date-card-rise">
-              <div class="date-card">
-                <span class="ticket-label" aria-hidden="true"><span data-field="groom">Thanh Xuân</span> · <span data-field="bride">Mọng Tiền</span></span>
-                <p>SAVE OUR DATE</p>
-                <strong data-field="dateShort">01.12.2026</strong>
-                <span class="script">We're getting married!</span>
-              </div>
-            </div>
-          </div>
-          <div class="envelope-front"></div>
+        <p class="save-the-date">Save the Date</p>
+        <h1 id="cover-title" class="hero-names">
+          <span data-field="groom">Thanh Xuân</span>
+          <span class="name-and">&amp;</span>
+          <span data-field="bride">Mọng Tiền</span>
+        </h1>
+        <figure class="hero-photo">
           <img
-            class="envelope-flowers flowers-back"
-            src="./images/rose-sprig.png"
-            width="1024"
-            height="1536"
-            alt=""
+            data-photo="hero"
+            src="./images/CS1A6171.jpg"
+            width="1365"
+            height="2048"
+            fetchpriority="high"
+            alt="Thanh Xuân và Mọng Tiền trong ngày chung đôi"
           />
-          <img
-            class="envelope-flowers flowers-left"
-            src="./images/flower.png"
-            width="1024"
-            height="1536"
-            alt=""
-          />
-          <img
-            class="envelope-flowers flowers-right"
-            src="./images/flower.png"
-            width="1024"
-            height="1536"
-            alt=""
-          />
-          <button
-            id="open-invitation"
-            class="open-envelope"
-            aria-label="Mở thiệp cưới"
-            aria-controls="content"
-            aria-expanded="false"
-            hidden
-          >
-            <span class="sr-only">Mở thiệp cưới Thanh Xuân và Mọng Tiền</span>
-          </button>
+        </figure>
+        <div class="hero-date" aria-label="Thời gian lễ cưới">
+          <p class="hero-time">
+            <span data-date="time">09:00</span>
+            <span data-date="weekdayLabel">Thứ Ba</span>
+          </p>
+          <p class="hero-day"><span data-date="day">01</span>.<span data-date="month">12</span></p>
+          <p class="hero-year"><span data-date="yearTop">20</span><span data-date="yearBottom">26</span></p>
         </div>
-        <div class="hero-caption">
-          <div class="cover-details" aria-hidden="true">
-            <p class="script cover-title">Thiệp Mời</p>
-            <p class="closed-names">
-              <span data-field="groom">Thanh Xuân</span> &amp;
-              <span data-field="bride">Mọng Tiền</span>
-            </p>
-            <p class="cover-date" data-field="dateShort">01.12.2026</p>
-          </div>
-          <div class="hero-names">
-            <h1 id="cover-title">
-              <span data-field="groom">Thanh Xuân</span
-              ><span class="name-and"> and </span
-              ><span data-field="bride">Mọng Tiền</span>
-            </h1>
-            <svg class="handdrawn-heart" viewBox="0 0 80 120" fill="none" aria-hidden="true">
-              <path d="M47 102C34 87 18 65 18 38C18 18 31 20 39 53C40 30 48 9 57 13C73 21 48 78 24 111" />
-            </svg>
-          </div>
-        </div>
+        <p class="hero-lunar" id="hero-lunar" hidden></p>
+        <a class="hero-scroll" href="#content" aria-label="Xem nội dung thiệp cưới">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </a>
       </section>
       <main id="content" tabindex="-1">
         <section class="story section-pad" id="story">
